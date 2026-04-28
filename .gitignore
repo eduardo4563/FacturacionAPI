@@ -1,0 +1,23 @@
+## .NET / ASP.NET Core
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+## Base de datos SQLite (se crea sola en producción)
+*.db
+*.db-shm
+*.db-wal
+
+## Variables de entorno locales
+.env
+appsettings.Development.json
+
+## Logs
+*.log
+logs/
+
+## Sistema operativo
+.DS_Store
+Thumbs.db
