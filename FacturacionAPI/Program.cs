@@ -88,7 +88,15 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 // Puerto dinámico para Render/Railway
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
@@ -104,7 +112,7 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty; // Swagger en la raíz "/"
 });
 
-app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
